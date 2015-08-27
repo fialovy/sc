@@ -16,10 +16,7 @@ parser.add_argument(
 def main(argv=sys.argv[1:]):
     arg = parser.parse_args()
     vecs = utils.vectorize_txts(arg.txt_dir)
-    winst = vecs['cracked_winston']
-    utils.collapse_vector(winst,43)
-    import pdb; pdb.set_trace()
-    print 'blah'
+    # and so forth...
 
 if __name__ == '__main__':
     main()
