@@ -8,7 +8,7 @@ parser = argparse.ArgumentParser(
 )
 
 parser.add_argument(
-    '-d', '--dir', action='store', dest='txt_dir', default='sample_txts',
+    '-d', '--dir', action='store', dest='txt_dir', default='sc_sampledata',
     help=('Directory where text files for vectorization, similarity, '
           'clustering, etc. are stored')
 )

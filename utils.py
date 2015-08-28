@@ -1,6 +1,7 @@
 import re
 import os
 import numpy
+import itertools
 
 def vectorize_txts(txt_dir):
     vecs = {}
@@ -38,3 +39,24 @@ def collapse_vector(vec, lgth):
         idx += part_lgth
 
     return collapsed
+
+def calculate_similarity(vec, others):
+    """Calculate and return cosine similarity between vec and arbitrary-length
+       list of other vectors
+
+       First, everything is collapsed to length of shortest vector
+    """
+    # eeewww
+    min_lgth = min(itertools.chain([len(vec),], map(len, others)))
+    vec = collapse_vector(vec, min_lgth)
+    others = [collapse_vector(vect, min_lgth) for vect in others]
+
+    sims = []
+    magn = numpy.linalg.norm
+
+    for other in others:
+        dot = float(numpy.dot(vec, other))
+        sim = dot / float(magn(vec) * magn(other))
+        sims.append(sim)
+
+    return sims
